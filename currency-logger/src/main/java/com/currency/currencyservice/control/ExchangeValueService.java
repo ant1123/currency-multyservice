@@ -1,6 +1,6 @@
-package com.currency.currencylogger.control;
-import com.currency.currencylogger.data.ExchangeValue;
-import com.currency.currencylogger.data.ExchangeValueRepository;
+package com.currency.currencyservice.control;
+import com.currency.currencyservice.data.ExchangeValue;
+import com.currency.currencyservice.data.ExchangeValueRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

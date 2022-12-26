@@ -1,4 +1,4 @@
-package com.currency.currencylogger.data;
+package com.currency.currencyservice.data;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

@@ -44,18 +44,7 @@ public class CurrencyExchangeController {
             @RequestParam(required = false, name="value", defaultValue = "1" ) String value)
     {
         ExchangeValue exchangeValue = exchangeValueService.convert(from, to, value);
-        //TODO here better to use async way of communication between services as we do not need to wait for answer from client
-        try {
-            RequestEntity<ExchangeValue> requestEntity = RequestEntity
-                    .post(new URL("http://currency-logger-service/exchanges").toURI())
-                    .contentType(MediaType.APPLICATION_JSON)
-                    .body(exchangeValue);
-            ResponseEntity<?> response = restTemplate.exchange(requestEntity, ExchangeValue.class);
-            logger.info("ExchangeValue was sent to database, status code  "+ response.getStatusCode());
-        }
-        catch(Exception e) {
-            logger.error("Error writing to the ExchangeValue data base "+ e.getMessage());
-        }
+        exchangeValueService.sendExchangeValue(exchangeValue);
         return exchangeValue;
     }
 }

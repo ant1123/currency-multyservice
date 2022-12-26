@@ -1,8 +1,17 @@
 package com.currency.currencyservice.data;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+@ToString
+@NoArgsConstructor
 public class ExchangeValue {
 
     private String from;
@@ -10,9 +19,9 @@ public class ExchangeValue {
     private BigDecimal rate;
     private BigDecimal initialValue;
     private BigDecimal convertedValue;
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
     private LocalDateTime date;
-
-    public ExchangeValue() {}
 
     public ExchangeValue(String from, String to, BigDecimal rate, BigDecimal initialValue, BigDecimal convertedValue) {
         super();
